@@ -11,6 +11,7 @@
 
 #include <filesystem>
 #include <string>
+#include <unordered_map>
 
 #include "Utils.hpp"
 
@@ -23,6 +24,7 @@ class Shader {
 private:
     u32 render_id_;
     std::filesystem::path file_path_;
+    std::unordered_map<std::string, int> uniform_location_table_;
 
 public:
     Shader(const std::filesystem::path &file_path);

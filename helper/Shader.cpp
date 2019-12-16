@@ -31,11 +31,15 @@ void Shader::setUniform4f(const std::string &name, float v0, float v1, float v2,
 }
 
 u32 Shader::uniformLocation(const std::string &name) {
+    if (uniform_location_table_.find(name) != uniform_location_table_.end()) {
+        return uniform_location_table_[name];
+    }
     GLCall(auto location = glGetUniformLocation(render_id_, name.c_str()));
     if (location == -1) {
         std::cerr << "Warning: uniform '" << name << "' doesn't exist!"
                   << std::endl;
     }
+    uniform_location_table_[name] = location;
     return location;
 }
 
