@@ -36,7 +36,8 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    // glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -48,6 +49,9 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+
+    // Light purple background
+    glClearColor(0.557f, 0.557f, 0.827f, 0.0f);
 
     std::cout << "Using GL Version: " << glGetString(GL_VERSION) << std::endl;
     return window;
