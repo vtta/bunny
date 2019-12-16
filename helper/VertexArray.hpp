@@ -9,6 +9,21 @@
 #ifndef VertexArray_hpp
 #define VertexArray_hpp
 
-#include <stdio.h>
+#include "VertexBuffer.hpp"
+#include "VertexBufferLayout.hpp"
+
+class VertexArray {
+private:
+    u32 render_id_;
+
+public:
+    VertexArray();
+    ~VertexArray();
+
+    void bind() const;
+    void unbind() const;
+
+    void addBuffer(const VertexBuffer &vb, const VertexBufferLayout &layout);
+};
 
 #endif /* VertexArray_hpp */

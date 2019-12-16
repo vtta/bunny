@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		3B61A9B423A713E900F98A6B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9B323A713E900F98A6B /* main.cpp */; };
+		3B61A9C423A7158300F98A6B /* test-env.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9C323A7158300F98A6B /* test-env.cpp */; };
+		3B61A9C923A7600D00F98A6B /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9C823A7600D00F98A6B /* glad.c */; };
+		3B6E467723A79B7B00EEC550 /* libglfw.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467623A79B7B00EEC550 /* libglfw.dylib */; };
+		3B6E467B23A79B9900EEC550 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467A23A79B9500EEC550 /* libfmt.a */; };
+		3B6E467D23A79BB100EEC550 /* libOpenMeshCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467C23A79BAE00EEC550 /* libOpenMeshCore.a */; };
+		3B6E468A23A79EF200EEC550 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E468823A79EF200EEC550 /* Utils.cpp */; };
+		3B6E468D23A7A03A00EEC550 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E468B23A7A03A00EEC550 /* VertexBuffer.cpp */; };
+		3B6E469023A7A31F00EEC550 /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E468E23A7A31F00EEC550 /* IndexBuffer.cpp */; };
+		3B6E469123A7AA2600EEC550 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A9BB23A7142400F98A6B /* OpenGL.framework */; };
+		3B6E469223A7AA2B00EEC550 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A9BD23A7142D00F98A6B /* GLUT.framework */; };
+		3B6E469523A7B9A000EEC550 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469323A7B9A000EEC550 /* VertexArray.cpp */; };
+		3B6E469823A7BA6400EEC550 /* VertexBufferLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */; };
+		3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BA353B523A77B6B009A6709 /* test-openmesh.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +38,29 @@
 /* Begin PBXFileReference section */
 		3B61A9B023A713E800F98A6B /* opengl-bunny */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "opengl-bunny"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B61A9B323A713E900F98A6B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3B61A9BB23A7142400F98A6B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		3B61A9BD23A7142D00F98A6B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		3B61A9BF23A7147C00F98A6B /* libOpenMeshCore.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenMeshCore.8.0.dylib; path = "../../../../usr/local/Cellar/open-mesh/8.0/lib/libOpenMeshCore.8.0.dylib"; sourceTree = "<group>"; };
+		3B61A9C123A7149C00F98A6B /* libOpenMeshCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenMeshCore.a; path = "../../../../usr/local/Cellar/open-mesh/8.0/lib/libOpenMeshCore.a"; sourceTree = "<group>"; };
+		3B61A9C323A7158300F98A6B /* test-env.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "test-env.cpp"; sourceTree = "<group>"; };
+		3B61A9C523A75C9500F98A6B /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		3B61A9C823A7600D00F98A6B /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		3B6E467323A7838A00EEC550 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/Cellar/fmt/6.1.2/lib/libfmt.a; sourceTree = "<group>"; };
+		3B6E467623A79B7B00EEC550 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.dylib; path = ../../../../usr/local/lib/libglfw.dylib; sourceTree = "<group>"; };
+		3B6E467A23A79B9500EEC550 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/lib/libfmt.a; sourceTree = "<group>"; };
+		3B6E467C23A79BAE00EEC550 /* libOpenMeshCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenMeshCore.a; path = ../../../../usr/local/lib/libOpenMeshCore.a; sourceTree = "<group>"; };
+		3B6E468823A79EF200EEC550 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		3B6E468923A79EF200EEC550 /* Utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
+		3B6E468B23A7A03A00EEC550 /* VertexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBuffer.cpp; sourceTree = "<group>"; };
+		3B6E468C23A7A03A00EEC550 /* VertexBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBuffer.hpp; sourceTree = "<group>"; };
+		3B6E468E23A7A31F00EEC550 /* IndexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IndexBuffer.cpp; sourceTree = "<group>"; };
+		3B6E468F23A7A31F00EEC550 /* IndexBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IndexBuffer.hpp; sourceTree = "<group>"; };
+		3B6E469323A7B9A000EEC550 /* VertexArray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexArray.cpp; sourceTree = "<group>"; };
+		3B6E469423A7B9A000EEC550 /* VertexArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexArray.hpp; sourceTree = "<group>"; };
+		3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBufferLayout.cpp; sourceTree = "<group>"; };
+		3B6E469723A7BA6400EEC550 /* VertexBufferLayout.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferLayout.hpp; sourceTree = "<group>"; };
+		3BA353B323A7789D009A6709 /* basic.shader */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic.shader; sourceTree = "<group>"; };
+		3BA353B523A77B6B009A6709 /* test-openmesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "test-openmesh.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +68,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6E467B23A79B9900EEC550 /* libfmt.a in Frameworks */,
+				3B6E469123A7AA2600EEC550 /* OpenGL.framework in Frameworks */,
+				3B6E467723A79B7B00EEC550 /* libglfw.dylib in Frameworks */,
+				3B6E469223A7AA2B00EEC550 /* GLUT.framework in Frameworks */,
+				3B6E467D23A79BB100EEC550 /* libOpenMeshCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,8 +82,11 @@
 		3B61A9A723A713E800F98A6B = {
 			isa = PBXGroup;
 			children = (
+				3B6E468723A79EE400EEC550 /* helper */,
+				3BA353B023A77870009A6709 /* res */,
 				3B61A9B223A713E800F98A6B /* opengl-bunny */,
 				3B61A9B123A713E800F98A6B /* Products */,
+				3B61A9BA23A7142400F98A6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +101,77 @@
 		3B61A9B223A713E800F98A6B /* opengl-bunny */ = {
 			isa = PBXGroup;
 			children = (
+				3B61A9C823A7600D00F98A6B /* glad.c */,
 				3B61A9B323A713E900F98A6B /* main.cpp */,
+				3B61A9C323A7158300F98A6B /* test-env.cpp */,
+				3BA353B523A77B6B009A6709 /* test-openmesh.cpp */,
 			);
 			path = "opengl-bunny";
+			sourceTree = "<group>";
+		};
+		3B61A9BA23A7142400F98A6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E467C23A79BAE00EEC550 /* libOpenMeshCore.a */,
+				3B6E467A23A79B9500EEC550 /* libfmt.a */,
+				3B6E467623A79B7B00EEC550 /* libglfw.dylib */,
+				3B6E467323A7838A00EEC550 /* libfmt.a */,
+				3B61A9C523A75C9500F98A6B /* libglfw.3.3.dylib */,
+				3B61A9C123A7149C00F98A6B /* libOpenMeshCore.a */,
+				3B61A9BF23A7147C00F98A6B /* libOpenMeshCore.8.0.dylib */,
+				3B61A9BD23A7142D00F98A6B /* GLUT.framework */,
+				3B61A9BB23A7142400F98A6B /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B6E468723A79EE400EEC550 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E468823A79EF200EEC550 /* Utils.cpp */,
+				3B6E468923A79EF200EEC550 /* Utils.hpp */,
+				3B6E468B23A7A03A00EEC550 /* VertexBuffer.cpp */,
+				3B6E468C23A7A03A00EEC550 /* VertexBuffer.hpp */,
+				3B6E468E23A7A31F00EEC550 /* IndexBuffer.cpp */,
+				3B6E468F23A7A31F00EEC550 /* IndexBuffer.hpp */,
+				3B6E469323A7B9A000EEC550 /* VertexArray.cpp */,
+				3B6E469423A7B9A000EEC550 /* VertexArray.hpp */,
+				3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */,
+				3B6E469723A7BA6400EEC550 /* VertexBufferLayout.hpp */,
+			);
+			path = helper;
+			sourceTree = "<group>";
+		};
+		3BA353B023A77870009A6709 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				3BA353B423A77A7E009A6709 /* object */,
+				3BA353B223A7787F009A6709 /* texture */,
+				3BA353B123A77876009A6709 /* shader */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		3BA353B123A77876009A6709 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				3BA353B323A7789D009A6709 /* basic.shader */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
+		3BA353B223A7787F009A6709 /* texture */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = texture;
+			sourceTree = "<group>";
+		};
+		3BA353B423A77A7E009A6709 /* object */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +232,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B61A9B423A713E900F98A6B /* main.cpp in Sources */,
+				3B61A9C423A7158300F98A6B /* test-env.cpp in Sources */,
+				3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */,
+				3B6E468A23A79EF200EEC550 /* Utils.cpp in Sources */,
+				3B6E469823A7BA6400EEC550 /* VertexBufferLayout.cpp in Sources */,
+				3B6E469023A7A31F00EEC550 /* IndexBuffer.cpp in Sources */,
+				3B6E469523A7B9A000EEC550 /* VertexArray.cpp in Sources */,
+				3B61A9C923A7600D00F98A6B /* glad.c in Sources */,
+				3B6E468D23A7A03A00EEC550 /* VertexBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +358,17 @@
 		3B61A9B823A713E900F98A6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/Users/vtta/Garage/glad/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -246,7 +376,18 @@
 		3B61A9B923A713E900F98A6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_NS_ASSERTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/vtta/Garage/glad/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

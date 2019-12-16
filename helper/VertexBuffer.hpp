@@ -9,6 +9,19 @@
 #ifndef VertexBuffer_hpp
 #define VertexBuffer_hpp
 
-#include <stdio.h>
+#include <glad/glad.h>
+
+#include "Utils.hpp"
+
+class VertexBuffer {
+private:
+    u32 render_id_;
+
+public:
+    VertexBuffer(const void *data, usz size);
+    ~VertexBuffer();
+    void bind() const;
+    void unbind() const;
+};
 
 #endif /* VertexBuffer_hpp */
