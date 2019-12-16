@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B61A9B423A713E900F98A6B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9B323A713E900F98A6B /* main.cpp */; };
 		3B61A9C423A7158300F98A6B /* test-env.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9C323A7158300F98A6B /* test-env.cpp */; };
-		3B61A9C923A7600D00F98A6B /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B61A9C823A7600D00F98A6B /* glad.c */; };
 		3B6E467723A79B7B00EEC550 /* libglfw.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467623A79B7B00EEC550 /* libglfw.dylib */; };
 		3B6E467B23A79B9900EEC550 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467A23A79B9500EEC550 /* libfmt.a */; };
 		3B6E467D23A79BB100EEC550 /* libOpenMeshCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6E467C23A79BAE00EEC550 /* libOpenMeshCore.a */; };
@@ -20,6 +19,11 @@
 		3B6E469223A7AA2B00EEC550 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B61A9BD23A7142D00F98A6B /* GLUT.framework */; };
 		3B6E469523A7B9A000EEC550 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469323A7B9A000EEC550 /* VertexArray.cpp */; };
 		3B6E469823A7BA6400EEC550 /* VertexBufferLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */; };
+		3B6E469B23A7C83D00EEC550 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469923A7C83D00EEC550 /* Shader.cpp */; };
+		3B6E469E23A7DA5F00EEC550 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E469C23A7DA5F00EEC550 /* Renderer.cpp */; };
+		3B6E46A223A7E23300EEC550 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A123A7E23300EEC550 /* glad.c */; };
+		3B6E46A423A7E2A200EEC550 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A323A7E2A200EEC550 /* stb_image.c */; };
+		3B6E46A723A7E31800EEC550 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A523A7E31800EEC550 /* Texture.cpp */; };
 		3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BA353B523A77B6B009A6709 /* test-openmesh.cpp */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +48,6 @@
 		3B61A9C123A7149C00F98A6B /* libOpenMeshCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOpenMeshCore.a; path = "../../../../usr/local/Cellar/open-mesh/8.0/lib/libOpenMeshCore.a"; sourceTree = "<group>"; };
 		3B61A9C323A7158300F98A6B /* test-env.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "test-env.cpp"; sourceTree = "<group>"; };
 		3B61A9C523A75C9500F98A6B /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
-		3B61A9C823A7600D00F98A6B /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		3B6E467323A7838A00EEC550 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/Cellar/fmt/6.1.2/lib/libfmt.a; sourceTree = "<group>"; };
 		3B6E467623A79B7B00EEC550 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.dylib; path = ../../../../usr/local/lib/libglfw.dylib; sourceTree = "<group>"; };
 		3B6E467A23A79B9500EEC550 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/lib/libfmt.a; sourceTree = "<group>"; };
@@ -59,6 +62,15 @@
 		3B6E469423A7B9A000EEC550 /* VertexArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexArray.hpp; sourceTree = "<group>"; };
 		3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBufferLayout.cpp; sourceTree = "<group>"; };
 		3B6E469723A7BA6400EEC550 /* VertexBufferLayout.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferLayout.hpp; sourceTree = "<group>"; };
+		3B6E469923A7C83D00EEC550 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		3B6E469A23A7C83D00EEC550 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		3B6E469C23A7DA5F00EEC550 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
+		3B6E469D23A7DA5F00EEC550 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
+		3B6E46A023A7E21600EEC550 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		3B6E46A123A7E23300EEC550 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		3B6E46A323A7E2A200EEC550 /* stb_image.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
+		3B6E46A523A7E31800EEC550 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		3B6E46A623A7E31800EEC550 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
 		3BA353B323A7789D009A6709 /* basic.shader */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic.shader; sourceTree = "<group>"; };
 		3BA353B523A77B6B009A6709 /* test-openmesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "test-openmesh.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +94,7 @@
 		3B61A9A723A713E800F98A6B = {
 			isa = PBXGroup;
 			children = (
+				3B6E469F23A7E1FC00EEC550 /* vendor */,
 				3B6E468723A79EE400EEC550 /* helper */,
 				3BA353B023A77870009A6709 /* res */,
 				3B61A9B223A713E800F98A6B /* opengl-bunny */,
@@ -101,7 +114,6 @@
 		3B61A9B223A713E800F98A6B /* opengl-bunny */ = {
 			isa = PBXGroup;
 			children = (
-				3B61A9C823A7600D00F98A6B /* glad.c */,
 				3B61A9B323A713E900F98A6B /* main.cpp */,
 				3B61A9C323A7158300F98A6B /* test-env.cpp */,
 				3BA353B523A77B6B009A6709 /* test-openmesh.cpp */,
@@ -138,8 +150,24 @@
 				3B6E469423A7B9A000EEC550 /* VertexArray.hpp */,
 				3B6E469623A7BA6400EEC550 /* VertexBufferLayout.cpp */,
 				3B6E469723A7BA6400EEC550 /* VertexBufferLayout.hpp */,
+				3B6E469923A7C83D00EEC550 /* Shader.cpp */,
+				3B6E469A23A7C83D00EEC550 /* Shader.hpp */,
+				3B6E469C23A7DA5F00EEC550 /* Renderer.cpp */,
+				3B6E469D23A7DA5F00EEC550 /* Renderer.hpp */,
+				3B6E46A523A7E31800EEC550 /* Texture.cpp */,
+				3B6E46A623A7E31800EEC550 /* Texture.hpp */,
 			);
 			path = helper;
+			sourceTree = "<group>";
+		};
+		3B6E469F23A7E1FC00EEC550 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E46A123A7E23300EEC550 /* glad.c */,
+				3B6E46A323A7E2A200EEC550 /* stb_image.c */,
+				3B6E46A023A7E21600EEC550 /* stb_image.h */,
+			);
+			path = vendor;
 			sourceTree = "<group>";
 		};
 		3BA353B023A77870009A6709 /* res */ = {
@@ -235,11 +263,15 @@
 				3B61A9C423A7158300F98A6B /* test-env.cpp in Sources */,
 				3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */,
 				3B6E468A23A79EF200EEC550 /* Utils.cpp in Sources */,
+				3B6E469E23A7DA5F00EEC550 /* Renderer.cpp in Sources */,
+				3B6E46A723A7E31800EEC550 /* Texture.cpp in Sources */,
+				3B6E469B23A7C83D00EEC550 /* Shader.cpp in Sources */,
 				3B6E469823A7BA6400EEC550 /* VertexBufferLayout.cpp in Sources */,
 				3B6E469023A7A31F00EEC550 /* IndexBuffer.cpp in Sources */,
 				3B6E469523A7B9A000EEC550 /* VertexArray.cpp in Sources */,
-				3B61A9C923A7600D00F98A6B /* glad.c in Sources */,
 				3B6E468D23A7A03A00EEC550 /* VertexBuffer.cpp in Sources */,
+				3B6E46A223A7E23300EEC550 /* glad.c in Sources */,
+				3B6E46A423A7E2A200EEC550 /* stb_image.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

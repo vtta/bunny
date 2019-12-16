@@ -11,6 +11,7 @@
 // NOLINTNEXTLINE
 #include <GLFW/glfw3.h>
 
+#include <array>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -20,6 +21,7 @@
 #include "IndexBuffer.hpp"
 #include "Renderer.hpp"
 #include "Shader.hpp"
+#include "Texture.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
 
@@ -27,31 +29,41 @@ int main(int argc, const char *argv[]) {
     auto window = GLInit();
     ASSERT(window != nullptr);
 
-    float positions[] = {
-        -0.5f, -0.5f,  // 0
-        0.5f,  -0.5f,  // 1
-        0.5f,  0.5f,   // 2
-        -0.5f, 0.5f    // 3
-    };
+    GLCall(glEnable(GL_BLEND));
+    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-    unsigned int indices[] = {0, 1, 2, 2, 3, 0};
+    std::array positions = {
+        -0.5f, -0.5f, 0.0f, 0.0f,  // 0 bottom left
+        0.5f,  -0.5f, 1.0f, 0.0f,  // 1 bottom right
+        0.5f,  0.5f,  1.0f, 1.0f,  // 2 top right
+        -0.5f, 0.5f,  0.0f, 1.0f,  // 3 top left
+    };
+    std::array indices{0U, 1U, 2U, 2U, 3U, 0U};
 
     // Have to set VAO before binding attrbutes
     VertexArray vao;
-    VertexBuffer vbo(positions, 4 * 2 * sizeof(float));
+    VertexBuffer vbo(positions.data(), sizeof(decltype(positions)::value_type) *
+                                           positions.size());
 
     // define vertex layout
     // This links the attrib pointer wih the buffer at index 0 in the vertex
     // array object
     VertexBufferLayout layout;
+    // point coord
+    layout.push<float>(2U);
+    // texture coord
     layout.push<float>(2U);
     vao.addBuffer(vbo, layout);
 
-    IndexBuffer ibo(indices, 6);
+    IndexBuffer ibo(indices.data(), indices.size());
 
     Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
+
+    Texture texture(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
+    texture.bind(0);
+    shader.setUniform1i("u_Texture", 0);
 
     Renderer render;
 
