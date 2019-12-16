@@ -18,6 +18,7 @@
 #include <string>
 
 #include "IndexBuffer.hpp"
+#include "Renderer.hpp"
 #include "Shader.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
@@ -58,26 +59,20 @@ int main(int argc, const char *argv[]) {
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
 
-    float red = 0.0f;
-    float step = 0.05f;
+    Renderer render;
 
+    float red = 0.0f;
+    float step = 0.01f;
     do {
         // Clear the screen
-        GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT););
+        render.clear();
 
         // set shader and set uniform color
         shader.bind();
         shader.setUniform4f("u_Color", red, 0.3, 0.8, 1.0);
 
-        // Instead of binding vertex buffer, attrib pointer, just bind
-        // Vertex Array Object
-        vao.bind();
-
-        // Bind index buffer
-        ibo.bind();
-
         // Draw
-        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+        render.draw(vao, ibo, shader);
 
         // Swap buffers
         glfwSwapBuffers(window);

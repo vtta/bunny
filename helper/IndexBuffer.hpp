@@ -24,7 +24,7 @@ public:
     ~IndexBuffer();
     void bind() const;
     void unbind() const;
-    inline auto count() { return count_; }
+    inline auto count() const { return count_; }
 };
 
 #endif /* IndexBuffer_hpp */
