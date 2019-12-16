@@ -396,6 +396,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/vtta/Garage/glad/include,
 					/usr/local/include,
+					"$(SRCROOT)/vendor/glm",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -415,6 +416,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/vtta/Garage/glad/include,
 					/usr/local/include,
+					"$(SRCROOT)/vendor/glm",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,

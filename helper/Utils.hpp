@@ -13,6 +13,8 @@
 #include <glad/glad.h>
 // NOLINTNEXTLINE
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <cassert>
 
@@ -52,7 +54,7 @@ bool GLLogCall(const char *function, const char *file, int line);
 
 void GLUnbindAll();
 
-GLFWwindow *GLInit(int width = 800, int height = 600,
+GLFWwindow *GLInit(int width = 640, int height = 480,
                    const char *title = "OpenGL");
 
 #endif /* Utils_hpp */

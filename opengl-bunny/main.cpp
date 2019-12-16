@@ -53,10 +53,15 @@ int main(int argc, const char *argv[]) {
     vao.addBuffer(vbo, layout);
 
     IndexBuffer ibo(indices.data(), indices.size());
+    
+    // 4x3 aspect ratio
+    // left edge, right edge, bottom edge, top edge, near plane, far plane
+    glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 
     Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
+    shader.setUniformMat4f("u_MVP", proj);
 
     Texture texture1(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
     Texture texture2(CURRENT_DIRECTORY / "../res/texture/whu-logo2.png");

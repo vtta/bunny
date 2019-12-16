@@ -33,6 +33,10 @@ void Shader::setUniform1i(const std::string &name, int value) {
     GLCall(glUniform1i(uniformLocation(name), value));
 }
 
+void Shader::setUniformMat4f(const std::string &name, const glm::mat4 &mat) {
+    GLCall(glUniformMatrix4fv(uniformLocation(name), 1, GL_FALSE, &mat[0][0]));
+}
+
 u32 Shader::uniformLocation(const std::string &name) {
     if (uniform_location_table_.find(name) != uniform_location_table_.end()) {
         return uniform_location_table_[name];
