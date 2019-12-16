@@ -104,7 +104,7 @@ u32 Shader::compile(unsigned int type, const std::string &source) {
 u32 Shader::create(const std::string &vertex_code,
                    const std::string &fragment_code) {
     // create a shader program
-    u32 program = glCreateProgram();
+    GLCall(u32 program = glCreateProgram());
     ASSERT(program != 0);
     u32 vs = compile(GL_VERTEX_SHADER, vertex_code);
     ASSERT(vs != 0);

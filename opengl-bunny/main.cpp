@@ -29,10 +29,7 @@ int main(int argc, const char *argv[]) {
     auto window = GLInit();
     ASSERT(window != nullptr);
 
-    GLCall(glEnable(GL_BLEND));
-    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
-    std::array positions = {
+    std::array positions{
         -0.5f, -0.5f, 0.0f, 0.0f,  // 0 bottom left
         0.5f,  -0.5f, 1.0f, 0.0f,  // 1 bottom right
         0.5f,  0.5f,  1.0f, 1.0f,  // 2 top right
@@ -61,9 +58,12 @@ int main(int argc, const char *argv[]) {
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
 
-    Texture texture(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
-    texture.bind(0);
-    shader.setUniform1i("u_Texture", 0);
+    Texture texture1(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
+    Texture texture2(CURRENT_DIRECTORY / "../res/texture/whu-logo2.png");
+    texture1.bind(3);
+    texture2.bind(5);
+    // tell shader which texture slot to use
+    shader.setUniform1i("u_Texture", 3);
 
     Renderer render;
 
@@ -80,21 +80,16 @@ int main(int argc, const char *argv[]) {
         // Draw
         render.draw(vao, ibo, shader);
 
-        // Swap buffers
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-
         // increment red
         if (red < 0.0f || red > 1.0f) step *= -1.0;
         red += step;
+    } while ((static_cast<void>(glfwSwapBuffers(window)),
+              static_cast<void>(glfwPollEvents()), true) &&
+             glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+             glfwGetKey(window, GLFW_KEY_Q) != GLFW_PRESS &&
+             glfwWindowShouldClose(window) == 0);
+    // Check if the ESC or Q key was pressed or the window was closed
 
-    }  // Check if the ESC key was pressed or the window was closed
-    while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-           glfwGetKey(window, GLFW_KEY_Q) != GLFW_PRESS &&
-           glfwWindowShouldClose(window) == 0);
-
-    // Close OpenGL window and terminate GLFW
     glfwTerminate();
-
     return 0;
 }

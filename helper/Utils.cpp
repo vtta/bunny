@@ -48,10 +48,13 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
 
     // configure global opengl state
     // -----------------------------
-    glEnable(GL_DEPTH_TEST);
+    GLCall(glEnable(GL_DEPTH_TEST));
 
     // Light purple background
-    glClearColor(0.557f, 0.557f, 0.827f, 0.0f);
+    GLCall(glClearColor(0.557f, 0.557f, 0.827f, 0.0f));
+
+    GLCall(glEnable(GL_BLEND));
+    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
     std::cout << "Using GL Version: " << glGetString(GL_VERSION) << std::endl;
     return window;
