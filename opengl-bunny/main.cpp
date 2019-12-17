@@ -64,15 +64,10 @@ int main(int argc, const char *argv[]) {
     // move everything down (the same as moving camera up)
     glm::mat4 view =
         glm::translate(glm::mat4(1.0f), glm::vec3(-200.f, -120.0f, 0.0f));
-    // move the object in the oppsite direction
-    glm::mat4 model =
-        glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 60.0f, 0.0f));
-    auto mvp = proj * view * model;
 
     Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
-    shader.setUniformMat4f("u_MVP", mvp);
 
     Texture texture1(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
     Texture texture2(CURRENT_DIRECTORY / "../res/texture/whu-logo2.png");
@@ -85,15 +80,13 @@ int main(int argc, const char *argv[]) {
     ImGui::CreateContext();
     ImGui::StyleColorsLight();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 330");
+    ImGui_ImplOpenGL3_Init("#version 410 core");
 
     // Our state
-    bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
     float red = 0.0f;
     float step = 0.01f;
+    auto translation = glm::vec3(100.0f, 60.0f, 0.0f);
+
     do {
         // Clear the screen
         render.clear();
@@ -101,9 +94,14 @@ int main(int argc, const char *argv[]) {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        // move the object in the oppsite direction
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), translation);
+        auto mvp = proj * view * model;
+
         // set shader and set uniform color
         shader.bind();
         shader.setUniform4f("u_Color", red, 0.3, 0.8, 1.0);
+        shader.setUniformMat4f("u_MVP", mvp);
 
         // Draw
         render.draw(vao, ibo, shader);
@@ -112,27 +110,12 @@ int main(int argc, const char *argv[]) {
         if (red < 0.0f || red > 1.0f) step *= -1.0;
         red += step;
 
-        // 2. Show a simple window that we create ourselves. We use a Begin/End
-        // pair to created a named window.
+        // Show a simple window that we create ourselves.
+        // We use a Begin/End pair to created a named window.
         {
-            static float f = 0.0f;
-            static int counter = 0;
-            // Create a window called "Hello, world!" and append into it.
-            ImGui::Begin("Hello, world!");
-            // Display some text (you can use a format strings too)
-            ImGui::Text("This is some useful text.");
-            // Edit bools storing our window open/close state
-            ImGui::Checkbox("Demo Window", &show_demo_window);
-            ImGui::Checkbox("Another Window", &show_another_window);
-            // Edit 1 float using a slider from 0.0f to 1.0f
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-            // Edit 3 floats representing a color
-            ImGui::ColorEdit3("clear color", (float *)&clear_color);
-            // Buttons return true when clicked (most widgets return true when
-            // edited/activated)
-            if (ImGui::Button("Button")) counter++;
-            ImGui::SameLine();
-            ImGui::Text("counter = %d", counter);
+            ImGui::Begin("Slider");
+            // Edit vec3 using a slider from 0.0f to 1.0f
+            ImGui::SliderFloat3("Translation", &translation[0], 0.0f, 640.0f);
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                         1000.0f / ImGui::GetIO().Framerate,
                         ImGui::GetIO().Framerate);
