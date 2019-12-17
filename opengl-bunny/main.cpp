@@ -6,9 +6,8 @@
 //  Copyright © 2019 vtta. All rights reserved.
 //
 
-// NOLINTNEXTLINE
 #include <glad/glad.h>
-// NOLINTNEXTLINE
+// NOLINT
 #include <GLFW/glfw3.h>
 
 #include <array>
@@ -24,6 +23,10 @@
 #include "Texture.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
+#include "imgui.h"
+// NOLINT
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 
 int main(int argc, const char *argv[]) {
     auto window = GLInit();
@@ -53,17 +56,19 @@ int main(int argc, const char *argv[]) {
     vao.addBuffer(vbo, layout);
 
     IndexBuffer ibo(indices.data(), indices.size());
-    
+
     // 4x3 aspect ratio
     // left edge, right edge, bottom edge, top edge, near plane, far plane
     glm::mat4 proj = glm::ortho(0.0f, 640.0f, 0.0f, 480.0f, -1.0f, 1.0f);
     // move everything to the left (the same as moving camera to the right)
     // move everything down (the same as moving camera up)
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(-200.f, -120.0f, 0.0f));
+    glm::mat4 view =
+        glm::translate(glm::mat4(1.0f), glm::vec3(-200.f, -120.0f, 0.0f));
     // move the object in the oppsite direction
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 60.0f, 0.0f));
+    glm::mat4 model =
+        glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 60.0f, 0.0f));
     auto mvp = proj * view * model;
-    
+
     Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
     shader.bind();
     shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
@@ -77,12 +82,24 @@ int main(int argc, const char *argv[]) {
     shader.setUniform1i("u_Texture", 3);
 
     Renderer render;
+    ImGui::CreateContext();
+    ImGui::StyleColorsLight();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
+
+    // Our state
+    bool show_demo_window = true;
+    bool show_another_window = false;
+    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     float red = 0.0f;
     float step = 0.01f;
     do {
         // Clear the screen
         render.clear();
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
         // set shader and set uniform color
         shader.bind();
@@ -94,6 +111,36 @@ int main(int argc, const char *argv[]) {
         // increment red
         if (red < 0.0f || red > 1.0f) step *= -1.0;
         red += step;
+
+        // 2. Show a simple window that we create ourselves. We use a Begin/End
+        // pair to created a named window.
+        {
+            static float f = 0.0f;
+            static int counter = 0;
+            // Create a window called "Hello, world!" and append into it.
+            ImGui::Begin("Hello, world!");
+            // Display some text (you can use a format strings too)
+            ImGui::Text("This is some useful text.");
+            // Edit bools storing our window open/close state
+            ImGui::Checkbox("Demo Window", &show_demo_window);
+            ImGui::Checkbox("Another Window", &show_another_window);
+            // Edit 1 float using a slider from 0.0f to 1.0f
+            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+            // Edit 3 floats representing a color
+            ImGui::ColorEdit3("clear color", (float *)&clear_color);
+            // Buttons return true when clicked (most widgets return true when
+            // edited/activated)
+            if (ImGui::Button("Button")) counter++;
+            ImGui::SameLine();
+            ImGui::Text("counter = %d", counter);
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
+                        1000.0f / ImGui::GetIO().Framerate,
+                        ImGui::GetIO().Framerate);
+            ImGui::End();
+        }
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     } while ((static_cast<void>(glfwSwapBuffers(window)),
               static_cast<void>(glfwPollEvents()), true) &&
              glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
@@ -101,6 +148,8 @@ int main(int argc, const char *argv[]) {
              glfwWindowShouldClose(window) == 0);
     // Check if the ESC or Q key was pressed or the window was closed
 
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui::DestroyContext();
     glfwTerminate();
     return 0;
 }

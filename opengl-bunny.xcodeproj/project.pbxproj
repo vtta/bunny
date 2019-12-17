@@ -24,6 +24,12 @@
 		3B6E46A223A7E23300EEC550 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A123A7E23300EEC550 /* glad.c */; };
 		3B6E46A423A7E2A200EEC550 /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A323A7E2A200EEC550 /* stb_image.c */; };
 		3B6E46A723A7E31800EEC550 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46A523A7E31800EEC550 /* Texture.cpp */; };
+		3B6E46C023A85ED200EEC550 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46B723A85ED200EEC550 /* imgui_widgets.cpp */; };
+		3B6E46C123A85ED200EEC550 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46B923A85ED200EEC550 /* imgui.cpp */; };
+		3B6E46C223A85ED200EEC550 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46BB23A85ED200EEC550 /* imgui_draw.cpp */; };
+		3B6E46C323A85ED200EEC550 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46BF23A85ED200EEC550 /* imgui_demo.cpp */; };
+		3B6E46C823A85F7B00EEC550 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46C523A85F7A00EEC550 /* imgui_impl_glfw.cpp */; };
+		3B6E46C923A85F7B00EEC550 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E46C723A85F7B00EEC550 /* imgui_impl_opengl3.cpp */; };
 		3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BA353B523A77B6B009A6709 /* test-openmesh.cpp */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +77,20 @@
 		3B6E46A323A7E2A200EEC550 /* stb_image.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
 		3B6E46A523A7E31800EEC550 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		3B6E46A623A7E31800EEC550 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		3B6E46B623A85ED100EEC550 /* imstb_rectpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_rectpack.h; path = "vendor/imgui-src/imstb_rectpack.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46B723A85ED200EEC550 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_widgets.cpp; path = "vendor/imgui-src/imgui_widgets.cpp"; sourceTree = SOURCE_ROOT; };
+		3B6E46B823A85ED200EEC550 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_internal.h; path = "vendor/imgui-src/imgui_internal.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46B923A85ED200EEC550 /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui.cpp; path = "vendor/imgui-src/imgui.cpp"; sourceTree = SOURCE_ROOT; };
+		3B6E46BA23A85ED200EEC550 /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui.h; path = "vendor/imgui-src/imgui.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46BB23A85ED200EEC550 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_draw.cpp; path = "vendor/imgui-src/imgui_draw.cpp"; sourceTree = SOURCE_ROOT; };
+		3B6E46BC23A85ED200EEC550 /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_textedit.h; path = "vendor/imgui-src/imstb_textedit.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46BD23A85ED200EEC550 /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imconfig.h; path = "vendor/imgui-src/imconfig.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46BE23A85ED200EEC550 /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_truetype.h; path = "vendor/imgui-src/imstb_truetype.h"; sourceTree = SOURCE_ROOT; };
+		3B6E46BF23A85ED200EEC550 /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_demo.cpp; path = "vendor/imgui-src/imgui_demo.cpp"; sourceTree = SOURCE_ROOT; };
+		3B6E46C423A85F7A00EEC550 /* imgui_impl_opengl3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_impl_opengl3.h; sourceTree = "<group>"; };
+		3B6E46C523A85F7A00EEC550 /* imgui_impl_glfw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_glfw.cpp; sourceTree = "<group>"; };
+		3B6E46C623A85F7A00EEC550 /* imgui_impl_glfw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imgui_impl_glfw.h; sourceTree = "<group>"; };
+		3B6E46C723A85F7B00EEC550 /* imgui_impl_opengl3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_opengl3.cpp; sourceTree = "<group>"; };
 		3BA353B323A7789D009A6709 /* basic.shader */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic.shader; sourceTree = "<group>"; };
 		3BA353B523A77B6B009A6709 /* test-openmesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "test-openmesh.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,11 +183,41 @@
 		3B6E469F23A7E1FC00EEC550 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				3B6E46CA23A8602300EEC550 /* stb_image */,
+				3B6E46B523A85DAD00EEC550 /* imgui */,
 				3B6E46A123A7E23300EEC550 /* glad.c */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		3B6E46B523A85DAD00EEC550 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E46C523A85F7A00EEC550 /* imgui_impl_glfw.cpp */,
+				3B6E46C623A85F7A00EEC550 /* imgui_impl_glfw.h */,
+				3B6E46C723A85F7B00EEC550 /* imgui_impl_opengl3.cpp */,
+				3B6E46C423A85F7A00EEC550 /* imgui_impl_opengl3.h */,
+				3B6E46BD23A85ED200EEC550 /* imconfig.h */,
+				3B6E46BF23A85ED200EEC550 /* imgui_demo.cpp */,
+				3B6E46BB23A85ED200EEC550 /* imgui_draw.cpp */,
+				3B6E46B823A85ED200EEC550 /* imgui_internal.h */,
+				3B6E46B723A85ED200EEC550 /* imgui_widgets.cpp */,
+				3B6E46B923A85ED200EEC550 /* imgui.cpp */,
+				3B6E46BA23A85ED200EEC550 /* imgui.h */,
+				3B6E46B623A85ED100EEC550 /* imstb_rectpack.h */,
+				3B6E46BC23A85ED200EEC550 /* imstb_textedit.h */,
+				3B6E46BE23A85ED200EEC550 /* imstb_truetype.h */,
+			);
+			path = imgui;
+			sourceTree = "<group>";
+		};
+		3B6E46CA23A8602300EEC550 /* stb_image */ = {
+			isa = PBXGroup;
+			children = (
 				3B6E46A323A7E2A200EEC550 /* stb_image.c */,
 				3B6E46A023A7E21600EEC550 /* stb_image.h */,
 			);
-			path = vendor;
+			path = stb_image;
 			sourceTree = "<group>";
 		};
 		3BA353B023A77870009A6709 /* res */ = {
@@ -262,11 +312,17 @@
 				3B61A9B423A713E900F98A6B /* main.cpp in Sources */,
 				3B61A9C423A7158300F98A6B /* test-env.cpp in Sources */,
 				3BA353B623A77B6B009A6709 /* test-openmesh.cpp in Sources */,
+				3B6E46C823A85F7B00EEC550 /* imgui_impl_glfw.cpp in Sources */,
+				3B6E46C223A85ED200EEC550 /* imgui_draw.cpp in Sources */,
+				3B6E46C023A85ED200EEC550 /* imgui_widgets.cpp in Sources */,
+				3B6E46C323A85ED200EEC550 /* imgui_demo.cpp in Sources */,
 				3B6E468A23A79EF200EEC550 /* Utils.cpp in Sources */,
 				3B6E469E23A7DA5F00EEC550 /* Renderer.cpp in Sources */,
 				3B6E46A723A7E31800EEC550 /* Texture.cpp in Sources */,
+				3B6E46C923A85F7B00EEC550 /* imgui_impl_opengl3.cpp in Sources */,
 				3B6E469B23A7C83D00EEC550 /* Shader.cpp in Sources */,
 				3B6E469823A7BA6400EEC550 /* VertexBufferLayout.cpp in Sources */,
+				3B6E46C123A85ED200EEC550 /* imgui.cpp in Sources */,
 				3B6E469023A7A31F00EEC550 /* IndexBuffer.cpp in Sources */,
 				3B6E469523A7B9A000EEC550 /* VertexArray.cpp in Sources */,
 				3B6E468D23A7A03A00EEC550 /* VertexBuffer.cpp in Sources */,
@@ -396,7 +452,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/vtta/Garage/glad/include,
 					/usr/local/include,
-					"$(SRCROOT)/vendor/glm",
+					"$(SRCROOT)/vendor",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -416,7 +472,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Users/vtta/Garage/glad/include,
 					/usr/local/include,
-					"$(SRCROOT)/vendor/glm",
+					"$(SRCROOT)/vendor",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,

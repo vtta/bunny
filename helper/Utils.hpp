@@ -13,10 +13,10 @@
 #include <glad/glad.h>
 // NOLINTNEXTLINE
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include <cassert>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 using i8 = char;
 using i16 = short;
