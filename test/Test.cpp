@@ -7,3 +7,28 @@
 //
 
 #include "Test.hpp"
+
+#include "Utils.hpp"
+#include "imgui.h"
+
+namespace test {
+
+TestMenu::TestMenu(std::shared_ptr<Test> &current) : current_(current) {}
+
+TestMenu::~TestMenu() {}
+
+void TestMenu::onUpdate(float deltaTime) {}
+
+void TestMenu::onRender() {}
+
+void TestMenu::onImGuiRender() {
+    for (auto const &test : tests_) {
+        if (ImGui::Button(test.first.c_str())) {
+            // call the test creator and point current test (it's a reference)
+            // to it
+            current_ = test.second();
+        }
+    }
+}
+
+}  // namespace test

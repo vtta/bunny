@@ -36,22 +36,36 @@ int main(int argc, const char *argv[]) {
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 410 core");
 
-    test::ClearColor test;
+    std::shared_ptr<test::Test> currentTest{nullptr};
+    auto testMenu = std::make_shared<test::TestMenu>(currentTest);
+    currentTest = testMenu;
+
+    testMenu->registerTest<test::ClearColor>("Clear Color");
 
     do {
+        GLCall(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+        render.clear();
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        test.onUpdate(0.0f);
-        test.onRender();
-        test.onImGuiRender();
+        if (currentTest) {
+            currentTest->onUpdate(0.0f);
+            currentTest->onRender();
+            ImGui::Begin("Test");
+            if (currentTest != testMenu && ImGui::Button("<-")) {
+                // TODO: know more about shared_ptr
+                // currentTest.reset();
+                currentTest = testMenu;
+            }
+            currentTest->onImGuiRender();
+            ImGui::End();
+        }
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
         glfwPollEvents();
-        render.clear();
     } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
              glfwGetKey(window, GLFW_KEY_Q) != GLFW_PRESS &&
              glfwWindowShouldClose(window) == 0);
