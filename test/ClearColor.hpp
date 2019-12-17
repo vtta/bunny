@@ -25,7 +25,7 @@ public:
     void onImGuiRender() override;
 
 private:
-    std::array<float, 4> color_{0.557f, 0.557f, 0.827f, 0.0f};
+    std::array<float, 4> color_{0.557f, 0.557f, 0.827f, 1.0f};
 };
 
 }  // namespace test

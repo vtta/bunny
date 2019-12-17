@@ -51,7 +51,7 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     GLCall(glEnable(GL_DEPTH_TEST));
 
     // Light purple background
-    GLCall(glClearColor(0.557f, 0.557f, 0.827f, 0.0f));
+    GLClearColorBG();
 
     GLCall(glEnable(GL_BLEND));
     GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));

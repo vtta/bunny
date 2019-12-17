@@ -10,6 +10,6 @@
 #define Tests_h
 
 #include "ClearColor.hpp"
-#include "Test.hpp"
+#include "Texture2D.hpp"
 
 #endif /* Tests_h */

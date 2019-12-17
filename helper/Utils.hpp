@@ -19,6 +19,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "imgui.h"
+
 using i8 = char;
 using i16 = short;
 using i32 = int;
@@ -57,6 +59,10 @@ Check for an error and log the error to the console.
 bool GLLogCall(const char *function, const char *file, int line);
 
 void GLUnbindAll();
+
+inline void GLClearColorBG() {
+    GLCall(glClearColor(0.557f, 0.557f, 0.827f, 1.0f));
+}
 
 GLFWwindow *GLInit(int width = WND_WIDTH, int height = WND_HEIGHT,
                    const char *title = "OpenGL");

@@ -9,7 +9,6 @@
 #include "ClearColor.hpp"
 
 #include "Utils.hpp"
-#include "imgui.h"
 
 namespace test {
 

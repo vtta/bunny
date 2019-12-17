@@ -40,10 +40,10 @@ int main(int argc, const char *argv[]) {
     auto testMenu = std::make_shared<test::TestMenu>(currentTest);
     currentTest = testMenu;
 
-    testMenu->registerTest<test::ClearColor>("Clear Color");
+    testMenu->registerTest<test::ClearColor>("ClearColor");
+    testMenu->registerTest<test::Texture2D>("Texture2D");
 
     do {
-        GLCall(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
         render.clear();
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
