@@ -22,6 +22,6 @@ void main()
 {
     vec4 texColor = texture(u_Texture, v_TexCoord);
     // color = texColor;
-    color = u_Color;
-    // color = mix(u_Color, texColor, 0.2);
+    // color = u_Color;
+    color = mix(u_Color, texColor, 0.2);
 }

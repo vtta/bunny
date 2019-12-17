@@ -11,11 +11,7 @@
 #include <GLFW/glfw3.h>
 
 #include <array>
-#include <filesystem>
-#include <fstream>
 #include <iostream>
-#include <sstream>
-#include <string>
 
 #include "IndexBuffer.hpp"
 #include "Renderer.hpp"
@@ -32,11 +28,28 @@ int main(int argc, const char *argv[]) {
     auto window = GLInit();
     ASSERT(window != nullptr);
 
+    auto divisor = 8.0f;
     std::array positions{
-        200.0f, 120.0f, 0.0f, 0.0f,  // 0 bottom left
-        440.0f, 120.0f, 1.0f, 0.0f,  // 1 bottom right
-        440.0f, 360.0f, 1.0f, 1.0f,  // 2 top right
-        200.0f, 360.0f, 0.0f, 1.0f,  // 3 top left
+        // bottom left
+        -WND_WIDTH / divisor,
+        -WND_HEIGHT / divisor,
+        0.0f,
+        0.0f,
+        // bottom right
+        WND_WIDTH / divisor,
+        -WND_HEIGHT / divisor,
+        1.0f,
+        0.0f,
+        // top right
+        WND_WIDTH / divisor,
+        WND_HEIGHT / divisor,
+        1.0f,
+        1.0f,
+        // top left
+        -WND_WIDTH / divisor,
+        WND_HEIGHT / divisor,
+        0.0f,
+        1.0f,
     };
     std::array indices{0U, 1U, 2U, 2U, 3U, 0U};
 
@@ -57,36 +70,37 @@ int main(int argc, const char *argv[]) {
 
     IndexBuffer ibo(indices.data(), indices.size());
 
-    // 4x3 aspect ratio
-    // left edge, right edge, bottom edge, top edge, near plane, far plane
-    glm::mat4 proj = glm::ortho(0.0f, 640.0f, 0.0f, 480.0f, -1.0f, 1.0f);
-    // move everything to the left (the same as moving camera to the right)
-    // move everything down (the same as moving camera up)
-    glm::mat4 view =
-        glm::translate(glm::mat4(1.0f), glm::vec3(-200.f, -120.0f, 0.0f));
-
-    Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
-    shader.bind();
-    shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
-
     Texture texture1(CURRENT_DIRECTORY / "../res/texture/whu-logo1.png");
     Texture texture2(CURRENT_DIRECTORY / "../res/texture/whu-logo2.png");
     texture1.bind(3);
     texture2.bind(5);
+
+    Shader shader(CURRENT_DIRECTORY / "../res/shader/basic.shader");
+    // shader.bind();
+    // shader.setUniform4f("u_Color", 0.8, 0.3, 0.8, 1.0);
     // tell shader which texture slot to use
-    shader.setUniform1i("u_Texture", 3);
+    // shader.setUniform1i("u_Texture", 3);
 
     Renderer render;
+
     ImGui::CreateContext();
     ImGui::StyleColorsLight();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 410 core");
 
-    // Our state
-    float red = 0.0f;
-    float step = 0.01f;
-    auto translation = glm::vec3(100.0f, 60.0f, 0.0f);
+    // 4x3 aspect ratio
+    // left edge, right edge, bottom edge, top edge, near plane, far plane
+    glm::mat4 proj =
+        glm::ortho(-WND_WIDTH / 2.0f, WND_WIDTH / 2.0f, -WND_HEIGHT / 2.0f,
+                   WND_HEIGHT / 2.0f, -1.0f, 1.0f);
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f));
 
+    auto translationA =
+        glm::vec3(-WND_WIDTH / divisor, -WND_HEIGHT / divisor, 0.0f);
+    auto translationB =
+        glm::vec3(WND_WIDTH / divisor, WND_HEIGHT / divisor, 0.0f);
+
+    auto red = 0.0f, step = 0.01f;
     do {
         // Clear the screen
         render.clear();
@@ -94,28 +108,42 @@ int main(int argc, const char *argv[]) {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        // move the object in the oppsite direction
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), translation);
-        auto mvp = proj * view * model;
+        {
+            auto model = glm::translate(glm::mat4(1.0f), translationA);
+            auto mvp = proj * view * model;
+            shader.bind();
+            shader.setUniform4f("u_Color", red, 0.3, 0.8, 1.0);
+            shader.setUniform1i("u_Texture", 3);
+            shader.setUniformMat4f("u_MVP", mvp);
+            render.draw(vao, ibo, shader);
+        }
 
-        // set shader and set uniform color
-        shader.bind();
-        shader.setUniform4f("u_Color", red, 0.3, 0.8, 1.0);
-        shader.setUniformMat4f("u_MVP", mvp);
-
-        // Draw
-        render.draw(vao, ibo, shader);
+        {
+            // draw another one
+            auto model = glm::translate(glm::mat4(1.0f), translationB);
+            auto mvp = proj * view * model;
+            shader.bind();
+            shader.setUniform4f("u_Color", 1.0f - red, 0.3, 0.8, 1.0);
+            shader.setUniform1i("u_Texture", 5);
+            shader.setUniformMat4f("u_MVP", mvp);
+            render.draw(vao, ibo, shader);
+        }
 
         // increment red
-        if (red < 0.0f || red > 1.0f) step *= -1.0;
         red += step;
+        if (red < 0.0f || red > 1.0f) {
+            step *= -1.0f;
+        }
 
         // Show a simple window that we create ourselves.
         // We use a Begin/End pair to created a named window.
         {
             ImGui::Begin("Slider");
             // Edit vec3 using a slider from 0.0f to 1.0f
-            ImGui::SliderFloat3("Translation", &translation[0], 0.0f, 640.0f);
+            ImGui::SliderFloat3("Translation A", &translationA[0], -WND_HEIGHT,
+                                WND_HEIGHT);
+            ImGui::SliderFloat3("Translation B", &translationB[0], -WND_HEIGHT,
+                                WND_HEIGHT);
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                         1000.0f / ImGui::GetIO().Framerate,
                         ImGui::GetIO().Framerate);

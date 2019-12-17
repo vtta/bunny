@@ -15,6 +15,7 @@
 #include <GLFW/glfw3.h>
 
 #include <cassert>
+#include <filesystem>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -28,6 +29,9 @@ using u32 = unsigned int;
 using u64 = unsigned long long;
 using usz = size_t;
 using uint = unsigned int;
+
+constexpr auto WND_WIDTH = 640;
+constexpr auto WND_HEIGHT = 480;
 
 #define ASSERT(x) assert(x)
 
@@ -54,7 +58,7 @@ bool GLLogCall(const char *function, const char *file, int line);
 
 void GLUnbindAll();
 
-GLFWwindow *GLInit(int width = 640, int height = 480,
+GLFWwindow *GLInit(int width = WND_WIDTH, int height = WND_HEIGHT,
                    const char *title = "OpenGL");
 
 #endif /* Utils_hpp */
