@@ -28,4 +28,19 @@ add_subdirectory(vendor/fmt)
 include_directories (vendor/fmt/include)
 target_link_libraries(bunny fmt)
 
-
+find_program(
+        CLANG_FORMAT_EXE
+        NAMES "clang-format"
+        DOC "Path to clang-format executable"
+)
+if(NOT CLANG_FORMAT_EXE)
+    message(STATUS "clang-format not found.")
+else()
+    message(STATUS "clang-format found: ${CLANG_FORMAT_EXE}")
+    file(GLOB_RECURSE FILES_TO_FORMAT "test/*.cpp" "test/*.hpp" "src/*.cpp" "include/*.hpp" main.cpp)
+    add_custom_target(
+            clang-format
+            COMMAND ${CLANG_FORMAT_EXE} -i -style=file ${FILES_TO_FORMAT}
+    )
+    add_dependencies(bunny clang-format)
+endif()

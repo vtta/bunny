@@ -1,2 +1,2 @@
-file (GLOB_RECURSE LIB_SOURCES "*.cpp")
-add_library (test_static STATIC ${LIB_SOURCES})
+file (GLOB_RECURSE TEST_SOURCES "*.cpp")
+add_library (test_static STATIC ${TEST_SOURCES})
