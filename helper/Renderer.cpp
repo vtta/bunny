@@ -7,7 +7,7 @@
 //
 
 #include "Renderer.hpp"
-
+namespace bunny {
 void Renderer::draw(const VertexArray &va, const IndexBuffer &ib,
                     const Shader &shader) const {
     shader.bind();
@@ -21,3 +21,4 @@ void Renderer::draw(const VertexArray &va, const IndexBuffer &ib,
 void Renderer::clear() const {
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT););
 }
+}  // namespace bunny

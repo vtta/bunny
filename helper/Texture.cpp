@@ -9,7 +9,7 @@
 #include "Texture.hpp"
 
 #include "stb_image.h"
-
+namespace bunny {
 Texture::Texture(const std::filesystem::path &file_path)
     : file_path_(file_path) {
     // OpenGL's origin starts from bottom left !! for PNG only
@@ -44,3 +44,4 @@ void Texture::bind(u32 slot) const {
 }
 
 void Texture::unbind() const { GLCall(glBindTexture(GL_TEXTURE_2D, 0)); }
+}  // namespace bunny

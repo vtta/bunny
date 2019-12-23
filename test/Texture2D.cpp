@@ -11,7 +11,7 @@
 #include <array>
 
 #include "Utils.hpp"
-
+namespace bunny {
 namespace test {
 
 Texture2D::Texture2D() {
@@ -66,7 +66,7 @@ Texture2D::~Texture2D() {}
 void Texture2D::onUpdate(float deltaTime) {}
 
 void Texture2D::onRender() {
-    GLClearColorBG();
+    // GLClearColorBG();
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     {
@@ -107,3 +107,4 @@ void Texture2D::onImGuiRender() {
 }
 
 }  // namespace test
+}  // namespace bunny

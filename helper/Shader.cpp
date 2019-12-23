@@ -11,7 +11,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
+namespace bunny {
 Shader::Shader(const std::filesystem::path &file_path)
     : file_path_(file_path), render_id_(0U) {
     ShaderProgramSource src = parse(file_path);
@@ -139,3 +139,4 @@ u32 Shader::create(const std::string &vertex_code,
 
     return program;
 }
+}  // namespace bunny

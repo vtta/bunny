@@ -21,6 +21,8 @@
 
 #include "imgui.h"
 
+namespace bunny {
+
 using i8 = char;
 using i16 = short;
 using i32 = int;
@@ -32,8 +34,8 @@ using u64 = unsigned long long;
 using usz = size_t;
 using uint = unsigned int;
 
-constexpr auto WND_WIDTH = 640;
-constexpr auto WND_HEIGHT = 480;
+constexpr auto WND_WIDTH = 800;
+constexpr auto WND_HEIGHT = 600;
 
 #define ASSERT(x) assert(x)
 

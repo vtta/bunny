@@ -9,7 +9,7 @@
 #include "ClearColor.hpp"
 
 #include "Utils.hpp"
-
+namespace bunny {
 namespace test {
 
 ClearColor::ClearColor() {}
@@ -28,3 +28,4 @@ void ClearColor::onImGuiRender() {
 }
 
 }  // namespace test
+}  // namespace bunny

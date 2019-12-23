@@ -9,6 +9,7 @@
 #include "Utils.hpp"
 
 #include <iostream>
+namespace bunny {
 
 GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfw: initialize and configure
@@ -43,6 +44,7 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Failed to initialize GLAD" << std::endl;
+        glfwTerminate();
         return nullptr;
     }
 
@@ -81,3 +83,5 @@ void GLUnbindAll() {
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
     GLCall(glBindVertexArray(0));
 }
+
+}  // namespace bunny

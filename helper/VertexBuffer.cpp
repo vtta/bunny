@@ -7,7 +7,7 @@
 //
 
 #include "VertexBuffer.hpp"
-
+namespace bunny {
 VertexBuffer::VertexBuffer(const void *data, usz size) {
     GLCall(glGenBuffers(1, &render_id_));
     ASSERT(render_id_ != 0U);
@@ -22,3 +22,4 @@ void VertexBuffer::bind() const {
 }
 
 void VertexBuffer::unbind() const { GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); }
+}  // namespace bunny

@@ -7,7 +7,7 @@
 //
 
 #include "VertexArray.hpp"
-
+namespace bunny {
 VertexArray::VertexArray() : render_id_(0U) {
     GLCall(glGenVertexArrays(1, &render_id_));
     ASSERT(render_id_ != 0);
@@ -33,3 +33,4 @@ void VertexArray::addBuffer(const VertexBuffer &vb,
         offset += elem.count * VertexBufferElement::sizeOfType(elem.type);
     }
 }
+}  // namespace bunny

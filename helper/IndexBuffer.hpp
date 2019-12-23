@@ -12,7 +12,7 @@
 #include <glad/glad.h>
 
 #include "Utils.hpp"
-
+namespace bunny {
 class IndexBuffer {
 private:
     u32 render_id_;
@@ -26,5 +26,5 @@ public:
     void unbind() const;
     inline auto count() const { return count_; }
 };
-
+}  // namespace bunny
 #endif /* IndexBuffer_hpp */

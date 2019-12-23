@@ -11,7 +11,7 @@
 
 #include "VertexBuffer.hpp"
 #include "VertexBufferLayout.hpp"
-
+namespace bunny {
 class VertexArray {
 private:
     u32 render_id_;
@@ -25,5 +25,5 @@ public:
 
     void addBuffer(const VertexBuffer &vb, const VertexBufferLayout &layout);
 };
-
+}  // namespace bunny
 #endif /* VertexArray_hpp */

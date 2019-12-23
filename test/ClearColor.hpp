@@ -12,7 +12,7 @@
 #include <array>
 
 #include "Test.hpp"
-
+namespace bunny {
 namespace test {
 
 class ClearColor : public Test {
@@ -29,5 +29,5 @@ private:
 };
 
 }  // namespace test
-
+}  // namespace bunny
 #endif /* ClearColor_hpp */

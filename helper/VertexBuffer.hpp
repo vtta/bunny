@@ -12,7 +12,7 @@
 #include <glad/glad.h>
 
 #include "Utils.hpp"
-
+namespace bunny {
 class VertexBuffer {
 private:
     u32 render_id_;
@@ -23,5 +23,5 @@ public:
     void bind() const;
     void unbind() const;
 };
-
+}  // namespace bunny
 #endif /* VertexBuffer_hpp */

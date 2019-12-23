@@ -7,7 +7,7 @@
 //
 
 #include "IndexBuffer.hpp"
-
+namespace bunny {
 IndexBuffer::IndexBuffer(const u32 *data, usz count) : count_(count) {
     ASSERT(sizeof(u32) == sizeof(GLuint));
 
@@ -27,3 +27,4 @@ void IndexBuffer::bind() const {
 void IndexBuffer::unbind() const {
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0U));
 }
+}  // namespace bunny

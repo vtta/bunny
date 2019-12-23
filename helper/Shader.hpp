@@ -14,7 +14,7 @@
 #include <unordered_map>
 
 #include "Utils.hpp"
-
+namespace bunny {
 struct ShaderProgramSource {
     std::string vertex;
     std::string fragment;
@@ -46,5 +46,5 @@ private:
     u32 create(const std::string &vertex_code,
                const std::string &fragment_code);
 };
-
+}  // namespace bunny
 #endif /* Shader_hpp */

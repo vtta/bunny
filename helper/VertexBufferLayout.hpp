@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "Utils.hpp"
-
+namespace bunny {
 struct VertexBufferElement {
     u32 type;
     u32 count;
@@ -69,5 +69,5 @@ public:
 
     inline auto const &elements() const { return elements_; }
 };
-
+}  // namespace bunny
 #endif /* VertexBufferLayout_hpp */

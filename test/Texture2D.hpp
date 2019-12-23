@@ -18,7 +18,7 @@
 #include "Texture.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
-
+namespace bunny {
 namespace test {
 
 class Texture2D : public Test {
@@ -32,7 +32,7 @@ public:
 
 private:
     constexpr static auto divisor = 8.0f;
-    
+
     glm::vec3 translationA_{-WND_WIDTH / divisor, -WND_HEIGHT / divisor, 0.0f};
     glm::vec3 translationB_{WND_WIDTH / divisor, WND_HEIGHT / divisor, 0.0f};
 
@@ -52,5 +52,5 @@ private:
 };
 
 }  // namespace test
-
+}  // namespace bunny
 #endif /* Texture2D_hpp */

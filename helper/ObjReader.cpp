@@ -1,9 +1,9 @@
 //
-//  test-openmesh.cpp
+//  ObjReader.cpp
 //  opengl-bunny
 //
-//  Created by vtta on 12/16/19.
+//  Created by vtta on 12/17/19.
 //  Copyright © 2019 vtta. All rights reserved.
 //
 
-#include <stdio.h>
+#include "ObjReader.hpp"

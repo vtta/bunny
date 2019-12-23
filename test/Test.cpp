@@ -9,7 +9,7 @@
 #include "Test.hpp"
 
 #include "Utils.hpp"
-
+namespace bunny {
 namespace test {
 
 TestMenu::TestMenu(std::shared_ptr<Test> &current) : current_(current) {}
@@ -31,3 +31,4 @@ void TestMenu::onImGuiRender() {
 }
 
 }  // namespace test
+}  // namespace bunny

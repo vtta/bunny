@@ -13,12 +13,12 @@
 #include "Shader.hpp"
 #include "Utils.hpp"
 #include "VertexArray.hpp"
-
+namespace bunny {
 class Renderer {
 public:
     void draw(const VertexArray &va, const IndexBuffer &ib,
               const Shader &shader) const;
     void clear() const;
 };
-
+}  // namespace bunny
 #endif /* Renderer_hpp */

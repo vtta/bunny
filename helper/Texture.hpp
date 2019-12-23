@@ -12,7 +12,7 @@
 #include <filesystem>
 
 #include "Utils.hpp"
-
+namespace bunny {
 class Texture {
 private:
     u32 render_id_{0};
@@ -31,5 +31,5 @@ public:
     inline auto width() const { return width_; }
     inline auto height() const { return height_; }
 };
-
+}  // namespace bunny
 #endif /* Texture_hpp */

@@ -13,7 +13,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
-
+namespace bunny {
 namespace test {
 
 class Test {
@@ -48,4 +48,5 @@ private:
 };
 
 }  // namespace test
+}  // namespace bunny
 #endif /* Test_hpp */

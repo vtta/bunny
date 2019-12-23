@@ -1,10 +1,10 @@
 //
-//  VertexBufferLayout.cpp
+//  Mesh.cpp
 //  opengl-bunny
 //
-//  Created by vtta on 12/16/19.
+//  Created by vtta on 12/20/19.
 //  Copyright © 2019 vtta. All rights reserved.
 //
 
-#include "VertexBufferLayout.hpp"
+#include "Mesh.hpp"
 namespace bunny {}

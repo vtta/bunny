@@ -25,6 +25,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+using namespace bunny;
+
 int main(int argc, const char *argv[]) {
     auto window = GLInit();
     ASSERT(window != nullptr);
@@ -42,7 +44,9 @@ int main(int argc, const char *argv[]) {
 
     testMenu->registerTest<test::ClearColor>("ClearColor");
     testMenu->registerTest<test::Texture2D>("Texture2D");
+    testMenu->registerTest<test::SpinBox>("SpinBox");
 
+    auto lastTime = glfwGetTime();
     do {
         render.clear();
         ImGui_ImplOpenGL3_NewFrame();
@@ -50,7 +54,9 @@ int main(int argc, const char *argv[]) {
         ImGui::NewFrame();
 
         if (currentTest) {
-            currentTest->onUpdate(0.0f);
+            auto time = glfwGetTime();
+            currentTest->onUpdate(time - lastTime);
+            lastTime = time;
             currentTest->onRender();
             ImGui::Begin("Test");
             if (currentTest != testMenu && ImGui::Button("<-")) {
