@@ -8,10 +8,13 @@ add_executable(bunny main.cpp)
 include_directories (include)
 include_directories (test/include)
 
-add_subdirectory(src)
-add_subdirectory(test)
+file (GLOB_RECURSE SRC_SOURCES "src/*.cpp" "src/*.hpp")
+add_library (src_static STATIC ${SRC_SOURCES})
+target_link_libraries(bunny src_static)
 
-target_link_libraries(bunny src_static test_static)
+file (GLOB_RECURSE TEST_SOURCES "test/*.cpp" "test/*.cpp")
+add_library (test_static STATIC ${TEST_SOURCES})
+target_link_libraries(bunny test_static)
 
 add_subdirectory(vendor/glfw)
 include_directories(vendor/glfw/include)
@@ -23,6 +26,10 @@ include_directories (vendor/glad/include)
 target_link_libraries(bunny glad)
 
 include_directories (vendor/glm)
+
+add_subdirectory(vendor/stb_image)
+include_directories(vendor/stb_image)
+target_link_libraries(bunny stb_image)
 
 add_subdirectory(vendor/imgui)
 include_directories(vendor/imgui)
