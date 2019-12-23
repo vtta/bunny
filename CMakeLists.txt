@@ -24,6 +24,10 @@ target_link_libraries(bunny glad)
 
 include_directories (vendor/glm)
 
+add_subdirectory(vendor/imgui)
+include_directories(vendor/imgui)
+target_link_libraries(bunny imgui)
+
 add_subdirectory(vendor/fmt)
 include_directories (vendor/fmt/include)
 target_link_libraries(bunny fmt)
