@@ -36,7 +36,6 @@ using uint = unsigned int;
 
 constexpr auto WND_WIDTH{800};
 constexpr auto WND_HEIGHT{600};
-extern GLFWwindow *WINDOW;
 
 #define ASSERT(x) assert(x)
 
@@ -69,6 +68,9 @@ inline void GLClearColorBG() {
 
 GLFWwindow *GLInit(int width = WND_WIDTH, int height = WND_HEIGHT,
                    const char *title = "OpenGL");
+
+class Camera;
+extern Camera CAMERA;
 
 }  // namespace bunny
 

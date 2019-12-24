@@ -28,14 +28,14 @@
 using namespace bunny;
 
 int main(int argc, const char *argv[]) {
-    WINDOW = GLInit();
-    ASSERT(WINDOW != nullptr);
+    auto window = GLInit();
+    ASSERT(window != nullptr);
 
     Renderer render;
 
     ImGui::CreateContext();
     ImGui::StyleColorsLight();
-    ImGui_ImplGlfw_InitForOpenGL(WINDOW, false);
+    ImGui_ImplGlfw_InitForOpenGL(window, false);
     ImGui_ImplOpenGL3_Init("#version 410 core");
 
     std::shared_ptr<test::Test> currentTest{nullptr};
@@ -45,6 +45,7 @@ int main(int argc, const char *argv[]) {
     testMenu->registerTest<test::ClearColor>("ClearColor");
     testMenu->registerTest<test::Texture2D>("Texture2D");
     testMenu->registerTest<test::SpinBox>("SpinBox");
+    testMenu->registerTest<test::Scroll>("Scroll");
 
     auto lastTime = glfwGetTime();
     do {
@@ -68,11 +69,11 @@ int main(int argc, const char *argv[]) {
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        glfwSwapBuffers(WINDOW);
+        glfwSwapBuffers(window);
         glfwPollEvents();
-    } while (glfwGetKey(WINDOW, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-             glfwGetKey(WINDOW, GLFW_KEY_Q) != GLFW_PRESS &&
-             glfwWindowShouldClose(WINDOW) == 0);
+    } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+             glfwGetKey(window, GLFW_KEY_Q) != GLFW_PRESS &&
+             glfwWindowShouldClose(window) == 0);
     // Check if the ESC or Q key was pressed or the WINDOW was closed
 
     ImGui_ImplOpenGL3_Shutdown();

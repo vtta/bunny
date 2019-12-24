@@ -9,8 +9,12 @@
 #include "Utils.hpp"
 
 #include <iostream>
+
+#include "Camera.hpp"
+
 namespace bunny {
-GLFWwindow *WINDOW{nullptr};
+
+Camera CAMERA;
 
 GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfw: initialize and configure
@@ -36,6 +40,11 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     // glfwSetCursorPosCallback(window, mouse_callback);
     // glfwSetScrollCallback(window, scroll_callback);
+    glfwSetScrollCallback(
+        window, [](GLFWwindow *window, double xoffset, double yoffset) {
+            CAMERA.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
+            CAMERA.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
+        });
 
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

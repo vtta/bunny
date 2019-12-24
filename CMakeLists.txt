@@ -5,14 +5,14 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(bunny main.cpp)
 
-include_directories (include)
+include_directories (src/include)
 include_directories (test/include)
 
 file (GLOB_RECURSE SRC_SOURCES "src/*.cpp" "src/*.hpp")
 add_library (src_static STATIC ${SRC_SOURCES})
 target_link_libraries(bunny src_static)
 
-file (GLOB_RECURSE TEST_SOURCES "test/*.cpp" "test/*.cpp")
+file (GLOB_RECURSE TEST_SOURCES "test/*.cpp" "test/*.hpp")
 add_library (test_static STATIC ${TEST_SOURCES})
 target_link_libraries(bunny test_static)
 
@@ -48,7 +48,7 @@ if(NOT CLANG_FORMAT_EXE)
     message(STATUS "clang-format not found.")
 else()
     message(STATUS "clang-format found: ${CLANG_FORMAT_EXE}")
-    file(GLOB_RECURSE FILES_TO_FORMAT "test/*.cpp" "test/*.hpp" "src/*.cpp" "include/*.hpp" main.cpp)
+    file(GLOB_RECURSE FILES_TO_FORMAT "test/*.cpp" "test/*.hpp" "src/*.cpp" "src/*.hpp" main.cpp)
     add_custom_target(
             clang-format
             COMMAND ${CLANG_FORMAT_EXE} -i -style=file ${FILES_TO_FORMAT}
