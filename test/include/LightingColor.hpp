@@ -1,13 +1,13 @@
 //
-//  Scroll.hpp
+//  LightingColor.hpp
 //  opengl-bunny
 //
-//  Created by vtta on 12/23/19.
+//  Created by vtta on 12/24/19.
 //  Copyright © 2019 vtta. All rights reserved.
 //
 
-#ifndef Scroll_hpp
-#define Scroll_hpp
+#ifndef LightingColor_hpp
+#define LightingColor_hpp
 
 #include <array>
 #include <memory>
@@ -24,27 +24,27 @@
 namespace bunny {
 namespace test {
 
-class Scroll : public Test {
+class LightingColor : public Test {
 public:
-    Scroll();
-    ~Scroll();
+    LightingColor();
+    ~LightingColor();
 
     void onUpdate(float deltaTime) override;
     void onRender() override;
     void onImGuiRender() override;
 
 private:
-    float red_{0.0f}, step_{0.01f}, angle_{0.0f};
+    float red_{0.0f}, step_{0.01f}, angle_{0.0f}, zoom_{40.0f};
     Renderer renderer_{};
-    std::unique_ptr<VertexArray> vao_;
+    std::unique_ptr<VertexArray> cube_vao_, light_vao_;
     std::unique_ptr<VertexBuffer> vbo_;
     std::unique_ptr<IndexBuffer> ibo_;
-    std::unique_ptr<Shader> shader_;
+    std::unique_ptr<Shader> cube_shader_, light_shader_;
     std::unique_ptr<Texture> texture_;
 
-    glm::mat4 proj_{
-        glm::perspective(glm::radians(45.0f), 1.0f * WND_WIDTH / WND_HEIGHT,
-                         0.1f, 100.0f),
+    inline glm::mat4 proj() const {
+        return glm::perspective(glm::radians(zoom_),
+                                1.0f * WND_WIDTH / WND_HEIGHT, 0.1f, 100.0f);
     };
     std::array<glm::vec3, 10> cube_positions_{
         glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
@@ -60,4 +60,4 @@ private:
 }  // namespace test
 }  // namespace bunny
 
-#endif /* Scroll_hpp */
+#endif /* LightingColor_hpp */

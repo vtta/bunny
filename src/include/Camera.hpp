@@ -29,26 +29,23 @@ public:
     inline glm::vec3 position() const { return {x(), y(), z()}; }
     inline glm::vec3 direction() const { return {-x(), -y(), -z()}; }
     inline glm::vec3 right() const {
-        auto cos_theta = glm::cos(theta_);
-        // if (glm::abs(cos_theta) < 100 * std::numeric_limits<float>::min()) {
-        //     return {sgn(cos_theta) * 1.0f, 0.0f, 0.0f};
-        // }
-        auto vx = glm::vec3(r_ / cos_theta, 0.0f, 0.0f);
-        auto vr = glm::vec3(r_ * cos_theta, 0.0f, -r_ * glm::sin(theta_));
-        return glm::normalize(vx - vr);
+        glm::vec3 y{0.0f, 1.0f, 0.0f}, r{x(), 0.0f, z()};
+        return glm::normalize(glm::cross(y, r));
     }
     inline glm::vec3 up() const {
-        auto v1 =
-            glm::vec3(-r_ * glm::sin(theta_), 0.0f, r_ * glm::cos(theta_));
-        auto v2 = position();
-        return glm::normalize(glm::cross(v1, v2));
+        glm::vec3 v{-r_ * glm::sin(theta_), 0.0f, r_ * glm::cos(theta_)};
+        return glm::normalize(glm::cross(v, position()));
+    }
+
+    inline glm::mat4 view() const {
+        return glm::lookAt(position(), glm::vec3(0.0f), up());
     }
 
     inline void moveRight(float r) { theta_ -= r; }
     inline void moveUp(float r) { phi_ -= r; }
 
 private:
-    float r_{4.0f};
+    float r_{6.0f};
     float theta_{glm::radians(45.0f)};
     float phi_{glm::radians(45.0f)};
 

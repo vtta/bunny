@@ -11,6 +11,7 @@
 
 #include "BunnyObj.hpp"
 #include "ClearColor.hpp"
+#include "LightingColor.hpp"
 #include "Scroll.hpp"
 #include "SpinBox.hpp"
 #include "Texture2D.hpp"

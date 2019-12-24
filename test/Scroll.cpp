@@ -76,8 +76,8 @@ void Scroll::onRender() {
         auto angle = 36.0f * i + angle_;
         model = glm::rotate(model, glm::radians(angle),
                             glm::vec3(1.0f, 0.3f, 0.5f));
-        view_ = glm::lookAt(CAMERA.position(), glm::vec3(0.0f), CAMERA.up());
-        auto mvp = proj_ * view_ * model;
+        auto view = CAMERA.view();
+        auto mvp = proj_ * view * model;
         shader_->setUniform4f("u_Color", red_, 0.557f, 0.827f, 1.0f);
         shader_->setUniform1i("u_Texture", 3);
         shader_->setUniformMat4f("u_MVP", mvp);
