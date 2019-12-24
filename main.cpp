@@ -35,7 +35,7 @@ int main(int argc, const char *argv[]) {
 
     ImGui::CreateContext();
     ImGui::StyleColorsLight();
-    ImGui_ImplGlfw_InitForOpenGL(WINDOW, true);
+    ImGui_ImplGlfw_InitForOpenGL(WINDOW, false);
     ImGui_ImplOpenGL3_Init("#version 410 core");
 
     std::shared_ptr<test::Test> currentTest{nullptr};
@@ -60,8 +60,6 @@ int main(int argc, const char *argv[]) {
             currentTest->onRender();
             ImGui::Begin("Test");
             if (currentTest != testMenu && ImGui::Button("<-")) {
-                // TODO: know more about shared_ptr
-                // currentTest.reset();
                 currentTest = testMenu;
             }
             currentTest->onImGuiRender();

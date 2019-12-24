@@ -13,13 +13,17 @@
 #include <sstream>
 namespace bunny {
 Shader::Shader(const std::filesystem::path &file_path)
-    : file_path_(file_path), render_id_(0U) {
+    : render_id_(0U), file_path_(file_path) {
     ShaderProgramSource src = parse(file_path);
     render_id_ = create(src.vertex, src.fragment);
     ASSERT(render_id_ != 0);
 }
 
-Shader::~Shader() { GLCall(glDeleteProgram(render_id_)); }
+Shader::~Shader() {
+    unbind();
+    GLCall(glDeleteProgram(render_id_));
+    render_id_ = 0U;
+}
 
 void Shader::bind() const { GLCall(glUseProgram(render_id_)); }
 
@@ -84,7 +88,7 @@ u32 Shader::compile(unsigned int type, const std::string &source) {
     // Error handling
     int result;
     GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
-    std::cerr << (type == GL_VERTEX_SHADER ? "vertex" : "fragment")
+    std::cout << (type == GL_VERTEX_SHADER ? "vertex" : "fragment")
               << " shader compile status: " << result << std::endl;
     if (result == GL_FALSE) {
         int length;
@@ -123,7 +127,7 @@ u32 Shader::create(const std::string &vertex_code,
     GLint program_linked;
 
     GLCall(glGetProgramiv(program, GL_LINK_STATUS, &program_linked));
-    std::cerr << "Program link status: " << program_linked << std::endl;
+    std::cout << "Program link status: " << program_linked << std::endl;
     if (program_linked != GL_TRUE) {
         GLsizei log_length = 0;
         GLchar message[1024];

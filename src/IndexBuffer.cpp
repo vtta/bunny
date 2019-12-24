@@ -18,7 +18,11 @@ IndexBuffer::IndexBuffer(const u32 *data, usz count) : count_(count) {
                         data, GL_STATIC_DRAW));
 }
 
-IndexBuffer::~IndexBuffer() { GLCall(glDeleteBuffers(1, &render_id_)); }
+IndexBuffer::~IndexBuffer() {
+    unbind();
+    GLCall(glDeleteBuffers(1, &render_id_));
+    render_id_ = 0U;
+}
 
 void IndexBuffer::bind() const {
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, render_id_));

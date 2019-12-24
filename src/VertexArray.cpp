@@ -13,7 +13,11 @@ VertexArray::VertexArray() : render_id_(0U) {
     ASSERT(render_id_ != 0);
 }
 
-VertexArray::~VertexArray() { GLCall(glDeleteVertexArrays(1, &render_id_)); }
+VertexArray::~VertexArray() {
+    unbind();
+    GLCall(glDeleteVertexArrays(1, &render_id_));
+    render_id_ = 0U;
+}
 
 void VertexArray::bind() const { GLCall(glBindVertexArray(render_id_)); }
 void VertexArray::unbind() const { GLCall(glBindVertexArray(0)); }
