@@ -26,8 +26,8 @@ namespace test {
 
 class Scroll : public Test {
 public:
-    Scroll();
-    ~Scroll();
+    Scroll(GLFWwindow *wnd);
+    ~Scroll() override;
 
     void onUpdate(float deltaTime) override;
     void onRender() override;

@@ -13,7 +13,15 @@
 namespace bunny {
 namespace test {
 
-SpinBox::SpinBox() {
+SpinBox::SpinBox(GLFWwindow *wnd) : Test(wnd) {
+    glfwSetScrollCallback(
+        window_, [](GLFWwindow *window, double xoffset, double yoffset) {
+            auto p = reinterpret_cast<WindowUserProperty *>(
+                glfwGetWindowUserPointer(window));
+            p->camera.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
+            p->camera.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
+        });
+
     std::array positions{
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f,
         0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
@@ -56,7 +64,10 @@ SpinBox::SpinBox() {
                                        "../res/shader/SpinBox.shader");
 }
 
-SpinBox::~SpinBox() {}
+SpinBox::~SpinBox() {
+    glfwSetScrollCallback(window_, nullptr);
+    Test::~Test();
+}
 
 void SpinBox::onUpdate(float deltaTime) {
     red_ += step_;

@@ -23,8 +23,8 @@ namespace test {
 
 class Texture2D : public Test {
 public:
-    Texture2D();
-    ~Texture2D();
+    Texture2D(GLFWwindow *wnd);
+    ~Texture2D() override;
 
     void onUpdate(float deltaTime) override;
     void onRender() override;

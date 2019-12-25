@@ -24,8 +24,8 @@ namespace test {
 
 class SpinBox : public Test {
 public:
-    SpinBox();
-    ~SpinBox();
+    SpinBox(GLFWwindow *wnd);
+    ~SpinBox() override;
 
     void onUpdate(float deltaTime) override;
     void onRender() override;

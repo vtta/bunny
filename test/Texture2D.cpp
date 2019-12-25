@@ -14,7 +14,7 @@
 namespace bunny {
 namespace test {
 
-Texture2D::Texture2D() {
+Texture2D::Texture2D(GLFWwindow *wnd) : Test(wnd) {
     auto divisor = 8.0f;
     std::array positions{
         // bottom left
@@ -61,7 +61,7 @@ Texture2D::Texture2D() {
                                        "../res/shader/TestTexture2d.shader");
 }
 
-Texture2D::~Texture2D() {}
+Texture2D::~Texture2D() { Test::~Test(); }
 
 void Texture2D::onUpdate(float deltaTime) {}
 

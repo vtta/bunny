@@ -17,8 +17,8 @@ namespace test {
 
 class ClearColor : public Test {
 public:
-    ClearColor();
-    ~ClearColor();
+    ClearColor(GLFWwindow *wnd) : Test(wnd) {}
+    ~ClearColor() override {}
 
     void onUpdate(float deltaTime) override;
     void onRender() override;

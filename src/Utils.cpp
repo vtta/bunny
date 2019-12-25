@@ -10,11 +10,9 @@
 
 #include <iostream>
 
-#include "Camera.hpp"
+#include "fmt/core.h"
 
 namespace bunny {
-
-Camera CAMERA;
 
 GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfw: initialize and configure
@@ -40,11 +38,6 @@ GLFWwindow *GLInit(int width, int height, const char *title) {
     // glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     // glfwSetCursorPosCallback(window, mouse_callback);
     // glfwSetScrollCallback(window, scroll_callback);
-    glfwSetScrollCallback(
-        window, [](GLFWwindow *window, double xoffset, double yoffset) {
-            CAMERA.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
-            CAMERA.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
-        });
 
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -94,6 +87,19 @@ void GLUnbindAll() {
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
     GLCall(glBindVertexArray(0));
+}
+
+std::ostream &operator<<(std::ostream &os, glm::vec2 const &v) {
+    os << fmt::format("[{}, {}]", v.x, v.y);
+    return os;
+}
+std::ostream &operator<<(std::ostream &os, glm::vec3 const &v) {
+    os << fmt::format("[{}, {}, {}]", v.x, v.y, v.z);
+    return os;
+}
+std::ostream &operator<<(std::ostream &os, glm::vec4 const &v) {
+    os << fmt::format("[{}, {}, {}, {}]", v.x, v.y, v.z, v.w);
+    return os;
 }
 
 }  // namespace bunny

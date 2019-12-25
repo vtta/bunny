@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
     ImGui_ImplOpenGL3_Init("#version 410 core");
 
     std::shared_ptr<test::Test> currentTest{nullptr};
-    auto testMenu = std::make_shared<test::TestMenu>(currentTest);
+    auto testMenu = std::make_shared<test::TestMenu>(window, currentTest);
     currentTest = testMenu;
 
     testMenu->registerTest<test::ClearColor>("ClearColor");

@@ -22,9 +22,13 @@ int sgn(T val) {
 
 class Camera {
 public:
+    float r{2.0f};
+    float theta{glm::radians(45.0f)};
+    float phi{glm::radians(45.0f)};
+
     Camera() = default;
     ~Camera() = default;
-    Camera(float r, float theta, float phi) : r_(r), theta_(theta), phi_(phi) {}
+    Camera(float r, float theta, float phi) : r(r), theta(theta), phi(phi) {}
 
     inline glm::vec3 position() const { return {x(), y(), z()}; }
     inline glm::vec3 direction() const { return {-x(), -y(), -z()}; }
@@ -33,7 +37,7 @@ public:
         return glm::normalize(glm::cross(y, r));
     }
     inline glm::vec3 up() const {
-        glm::vec3 v{-r_ * glm::sin(theta_), 0.0f, r_ * glm::cos(theta_)};
+        glm::vec3 v{-r * glm::sin(theta), 0.0f, r * glm::cos(theta)};
         return glm::normalize(glm::cross(v, position()));
     }
 
@@ -41,17 +45,12 @@ public:
         return glm::lookAt(position(), glm::vec3(0.0f), up());
     }
 
-    inline void moveRight(float r) { theta_ -= r; }
-    inline void moveUp(float r) { phi_ -= r; }
+    inline void moveRight(float rad) { theta -= rad; }
+    inline void moveUp(float rad) { phi -= rad; }
 
-private:
-    float r_{6.0f};
-    float theta_{glm::radians(45.0f)};
-    float phi_{glm::radians(45.0f)};
-
-    inline float x() const { return r_ * glm::sin(phi_) * glm::cos(theta_); }
-    inline float y() const { return r_ * glm::cos(phi_); }
-    inline float z() const { return r_ * glm::sin(phi_) * glm::sin(theta_); }
+    inline float x() const { return r * glm::sin(phi) * glm::cos(theta); }
+    inline float y() const { return r * glm::cos(phi); }
+    inline float z() const { return r * glm::sin(phi) * glm::sin(theta); }
 };
 
 }  // namespace bunny

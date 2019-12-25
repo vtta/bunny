@@ -28,8 +28,8 @@ namespace test {
 
 class BunnyPly : public Test {
 public:
-    BunnyPly();
-    ~BunnyPly();
+    BunnyPly(GLFWwindow *wnd);
+    ~BunnyPly() override;
 
     void onUpdate(float deltaTime) override;
     void onRender() override;
@@ -60,6 +60,7 @@ private:
     glm::vec3 camera_direction_{}, camera_up_{};
     float model_scale_factor_{5.0f};
     glm::vec3 light_pos_{1.2f, 1.0f, 2.0f};
+    glm::vec2 *last_clicked_{};
 };
 
 }  // namespace test

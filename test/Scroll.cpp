@@ -9,11 +9,20 @@
 #include "Scroll.hpp"
 
 #include "Utils.hpp"
+#include "WindowUserProperty.hpp"
 
 namespace bunny {
 namespace test {
 
-Scroll::Scroll() {
+Scroll::Scroll(GLFWwindow *wnd) : Test(wnd) {
+    glfwSetScrollCallback(
+        window_, [](GLFWwindow *window, double xoffset, double yoffset) {
+            auto p = reinterpret_cast<WindowUserProperty *>(
+                glfwGetWindowUserPointer(window));
+            p->camera.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
+            p->camera.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
+        });
+
     std::array positions{
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f,
         0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
@@ -56,7 +65,10 @@ Scroll::Scroll() {
                                        "../res/shader/Scroll.shader");
 }
 
-Scroll::~Scroll() {}
+Scroll::~Scroll() {
+    glfwSetScrollCallback(window_, nullptr);
+    Test::~Test();
+}
 
 void Scroll::onUpdate(float deltaTime) {
     // std::cout << deltaTime << std::endl;
@@ -64,8 +76,8 @@ void Scroll::onUpdate(float deltaTime) {
     if (red_ < 0.0f || red_ > 1.0f) {
         step_ *= -1.0f;
     }
-    camera_direction_ = CAMERA.direction();
-    camera_up_ = CAMERA.up();
+    camera_direction_ = camera_->direction();
+    camera_up_ = camera_->up();
 }
 
 void Scroll::onRender() {
@@ -76,7 +88,7 @@ void Scroll::onRender() {
         auto angle = 36.0f * i + angle_;
         model = glm::rotate(model, glm::radians(angle),
                             glm::vec3(1.0f, 0.3f, 0.5f));
-        auto view = CAMERA.view();
+        auto view = camera_->view();
         auto mvp = proj_ * view * model;
         shader_->setUniform4f("u_Color", red_, 0.557f, 0.827f, 1.0f);
         shader_->setUniform1i("u_Texture", 3);

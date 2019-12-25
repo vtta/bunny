@@ -69,8 +69,9 @@ inline void GLClearColorBG() {
 GLFWwindow *GLInit(int width = WND_WIDTH, int height = WND_HEIGHT,
                    const char *title = "OpenGL");
 
-class Camera;
-extern Camera CAMERA;
+std::ostream &operator<<(std::ostream &os, glm::vec2 const &v);
+std::ostream &operator<<(std::ostream &os, glm::vec3 const &v);
+std::ostream &operator<<(std::ostream &os, glm::vec4 const &v);
 
 }  // namespace bunny
 

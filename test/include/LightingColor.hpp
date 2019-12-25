@@ -26,8 +26,8 @@ namespace test {
 
 class LightingColor : public Test {
 public:
-    LightingColor();
-    ~LightingColor();
+    LightingColor(GLFWwindow *wnd);
+    ~LightingColor() override;
 
     void onUpdate(float deltaTime) override;
     void onRender() override;

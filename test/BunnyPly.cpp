@@ -9,12 +9,37 @@
 #include "BunnyPly.hpp"
 
 #include "Utils.hpp"
+#include "fmt/core.h"
 
 namespace bunny {
 namespace test {
 
-BunnyPly::BunnyPly()
-    : bunnyModel_(CURRENT_DIRECTORY / "../res/object/bunny.ply") {
+BunnyPly::BunnyPly(GLFWwindow *wnd)
+    : Test(wnd), bunnyModel_(CURRENT_DIRECTORY / "../res/object/bunny.ply") {
+    glfwSetScrollCallback(
+        window_, [](GLFWwindow *window, double xoffset, double yoffset) {
+            auto p = reinterpret_cast<WindowUserProperty *>(
+                glfwGetWindowUserPointer(window));
+            p->camera.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
+            p->camera.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
+        });
+    glfwSetMouseButtonCallback(
+        window_, [](GLFWwindow *window, int button, int action, int mods) {
+            if (!(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)) {
+                return;
+            }
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+            auto p = reinterpret_cast<WindowUserProperty *>(
+                glfwGetWindowUserPointer(window));
+            p->lastClicked = glm::vec2(xpos, ypos);
+            // std::cout << "last clicked: " << p->lastClicked << std::endl;
+        });
+
+    auto p = reinterpret_cast<WindowUserProperty *>(
+        glfwGetWindowUserPointer(window_));
+    last_clicked_ = &p->lastClicked;
+
     std::array cube_positions{
         -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  0.0f,  0.0f,  -1.0f, 0.5f,  -0.5f,
         -0.5f, 1.0f,  0.0f,  0.0f,  0.0f,  -1.0f, 0.5f,  0.5f,  -0.5f, 1.0f,
@@ -89,7 +114,13 @@ BunnyPly::BunnyPly()
     GLCall(glDisable(GL_BLEND));
 }
 
-BunnyPly::~BunnyPly() { GLCall(glEnable(GL_BLEND)); }
+BunnyPly::~BunnyPly() {
+    GLCall(glEnable(GL_BLEND));
+
+    glfwSetScrollCallback(window_, nullptr);
+    glfwSetMouseButtonCallback(window_, nullptr);
+    Test::~Test();
+}
 
 void BunnyPly::onUpdate(float deltaTime) {
     // std::cout << deltaTime << std::endl;
@@ -97,8 +128,8 @@ void BunnyPly::onUpdate(float deltaTime) {
     if (red_ < 0.0f || red_ > 1.0f) {
         step_ *= -1.0f;
     }
-    camera_direction_ = CAMERA.direction();
-    camera_up_ = CAMERA.up();
+    camera_direction_ = camera_->direction();
+    camera_up_ = camera_->up();
 }
 
 void BunnyPly::onRender() {
@@ -108,7 +139,7 @@ void BunnyPly::onRender() {
         light_shader_->bind();
         auto model = glm::translate(glm::mat4(1.0f), light_pos_);
         model = glm::scale(model, glm::vec3(0.1f));
-        auto view = CAMERA.view();
+        auto view = camera_->view();
         auto mvp = proj() * view * model;
         light_shader_->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
         light_shader_->setUniformMat4f("u_MVP", mvp);
@@ -117,18 +148,33 @@ void BunnyPly::onRender() {
     {
         model_shader_->bind();
         model_shader_->setUniform1i("u_Texture", 3);
+        auto proj = this->proj();
+        auto view = camera_->view();
         auto model = glm::translate(glm::mat4(1.0f), model_positions_[0]);
         model = glm::scale(model, glm::vec3(model_scale_factor_));
         model = glm::rotate(model, glm::radians(angle_), {1.0f, 0.3f, 0.5f});
         auto normMat = glm::transpose(glm::inverse(model));
+        model_shader_->setUniformMat4f("u_Model", model);
+        model_shader_->setUniformMat4f("u_View", view);
+        model_shader_->setUniformMat4f("u_Proj", proj);
+        model_shader_->setUniformMat4f("u_NormMat", normMat);
+        model_shader_->setUniform4f("u_ViewPos", {camera_->position(), 1.0f});
         model_shader_->setUniform4f("u_ObjectColor", 1.0f, 0.5f, 0.31f, 1.0f);
         model_shader_->setUniform4f("u_LightColor", 1.0f, 1.0f, 1.0f, 1.0f);
         model_shader_->setUniform4f("u_LightPos", {light_pos_, 1.0f});
-        model_shader_->setUniform4f("u_ViewPos", {CAMERA.position(), 1.0f});
-        model_shader_->setUniformMat4f("u_Model", model);
-        model_shader_->setUniformMat4f("u_View", CAMERA.view());
-        model_shader_->setUniformMat4f("u_Proj", proj());
-        model_shader_->setUniformMat4f("u_NormMat", normMat);
+        {
+            float x = (2.0f * last_clicked_->x) / WND_WIDTH - 1.0f;
+            float y = 1.0f - (2.0f * last_clicked_->y) / WND_HEIGHT;
+            float z = 1.0f;
+            glm::vec3 ray_nds = glm::vec3(x, y, z);
+            glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+            glm::vec4 ray_eye = glm::inverse(proj) * ray_clip;
+            ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0f, 0.0f);
+            glm::vec4 ray_wor = glm::inverse(view) * ray_eye;
+            ray_wor = glm::normalize(ray_wor);
+            model_shader_->setUniform4f("u_Ray", ray_wor);
+        }
+
         renderer_.draw(*model_vao_, *model_ibo_, *model_shader_);
     }
 }
@@ -140,6 +186,7 @@ void BunnyPly::onImGuiRender() {
     ImGui::SliderFloat("Rotate angle", &angle_, 0.0f, 360.0f);
     ImGui::SliderFloat("Scale factor", &model_scale_factor_, 0.1f, 16.0f);
     ImGui::SliderFloat("Camera zoom", &zoom_, 0.1f, 80.0f);
+    ImGui::SliderFloat("Camera distance", &camera_->r, 0.1f, 6.0f);
     ImGui::SliderFloat3("Camera position", &camera_direction_[0], -4.0f, 4.0f);
     ImGui::SliderFloat3("Camera up", &camera_up_[0], -4.0f, 4.0f);
     ImGui::SliderFloat3("Light position", &light_pos_[0], -4.0f, 4.0f);

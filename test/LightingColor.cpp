@@ -13,7 +13,15 @@
 namespace bunny {
 namespace test {
 
-LightingColor::LightingColor() {
+LightingColor::LightingColor(GLFWwindow *wnd) : Test(wnd) {
+    glfwSetScrollCallback(
+        window_, [](GLFWwindow *window, double xoffset, double yoffset) {
+            auto p = reinterpret_cast<WindowUserProperty *>(
+                glfwGetWindowUserPointer(window));
+            p->camera.moveRight(glm::radians(xoffset / 80.0f * 180.0f));
+            p->camera.moveUp(glm::radians(-yoffset / 80.0f * 180.0f));
+        });
+
     std::array positions{
         -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  0.0f,  0.0f,  -1.0f, 0.5f,  -0.5f,
         -0.5f, 1.0f,  0.0f,  0.0f,  0.0f,  -1.0f, 0.5f,  0.5f,  -0.5f, 1.0f,
@@ -74,7 +82,11 @@ LightingColor::LightingColor() {
     GLCall(glDisable(GL_BLEND));
 }
 
-LightingColor::~LightingColor() { GLCall(glEnable(GL_BLEND)); }
+LightingColor::~LightingColor() {
+    GLCall(glEnable(GL_BLEND));
+    glfwSetScrollCallback(window_, nullptr);
+    Test::~Test();
+}
 
 void LightingColor::onUpdate(float deltaTime) {
     // std::cout << deltaTime << std::endl;
@@ -82,8 +94,8 @@ void LightingColor::onUpdate(float deltaTime) {
     if (red_ < 0.0f || red_ > 1.0f) {
         step_ *= -1.0f;
     }
-    camera_direction_ = CAMERA.direction();
-    camera_up_ = CAMERA.up();
+    camera_direction_ = camera_->direction();
+    camera_up_ = camera_->up();
 }
 
 void LightingColor::onRender() {
@@ -94,7 +106,7 @@ void LightingColor::onRender() {
         light_shader_->bind();
         auto model = glm::translate(glm::mat4(1.0f), lightPos);
         model = glm::scale(model, glm::vec3(0.2f));
-        auto view = CAMERA.view();
+        auto view = camera_->view();
         auto mvp = proj() * view * model;
         light_shader_->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
         light_shader_->setUniformMat4f("u_MVP", mvp);
@@ -109,9 +121,9 @@ void LightingColor::onRender() {
         cube_shader_->setUniform4f("u_ObjectColor", 1.0f, 0.5f, 0.31f, 1.0f);
         cube_shader_->setUniform4f("u_LightColor", 1.0f, 1.0f, 1.0f, 1.0f);
         cube_shader_->setUniform4f("u_LightPos", {lightPos, 1.0f});
-        cube_shader_->setUniform4f("u_ViewPos", {CAMERA.position(), 1.0f});
+        cube_shader_->setUniform4f("u_ViewPos", {camera_->position(), 1.0f});
         cube_shader_->setUniformMat4f("u_Model", model);
-        cube_shader_->setUniformMat4f("u_View", CAMERA.view());
+        cube_shader_->setUniformMat4f("u_View", camera_->view());
         cube_shader_->setUniformMat4f("u_Proj", proj());
         cube_shader_->setUniformMat4f("u_NormMat", normMat);
         renderer_.draw(*cube_vao_, *ibo_, *cube_shader_);

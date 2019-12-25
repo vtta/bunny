@@ -12,10 +12,6 @@
 namespace bunny {
 namespace test {
 
-ClearColor::ClearColor() {}
-
-ClearColor::~ClearColor() {}
-
 void ClearColor::onUpdate(float deltaTime) {}
 
 void ClearColor::onRender() {

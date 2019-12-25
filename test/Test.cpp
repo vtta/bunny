@@ -9,14 +9,16 @@
 #include "Test.hpp"
 
 #include "Utils.hpp"
+
 namespace bunny {
 namespace test {
 
-TestMenu::TestMenu(std::shared_ptr<Test> &current) : current_(current) {
+TestMenu::TestMenu(GLFWwindow *wnd, std::shared_ptr<Test> &current)
+    : Test(wnd), current_(current) {
     // GLUnbindAll();
 }
 
-TestMenu::~TestMenu() {}
+TestMenu::~TestMenu() { Test::~Test(); }
 
 void TestMenu::onUpdate(float deltaTime) {}
 
@@ -27,7 +29,7 @@ void TestMenu::onImGuiRender() {
         if (ImGui::Button(test.first.c_str())) {
             // call the test creator and point current test (it's a reference)
             // to it
-            current_ = test.second();
+            current_ = test.second(window_);
         }
     }
 }
