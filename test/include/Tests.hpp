@@ -10,6 +10,7 @@
 #define Tests_h
 
 #include "BunnyObj.hpp"
+#include "BunnyPly.hpp"
 #include "ClearColor.hpp"
 #include "LightingColor.hpp"
 #include "Scroll.hpp"

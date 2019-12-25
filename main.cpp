@@ -47,6 +47,7 @@ int main(int argc, const char *argv[]) {
     testMenu->registerTest<test::SpinBox>("SpinBox");
     testMenu->registerTest<test::Scroll>("Scroll");
     testMenu->registerTest<test::LightingColor>("LightingColor");
+    testMenu->registerTest<test::BunnyPly>("BunnyPly");
 
     auto lastTime = glfwGetTime();
     do {
