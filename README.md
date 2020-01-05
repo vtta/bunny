@@ -1,6 +1,6 @@
 # Bunny
 
-Draw the stanford bunny using OpenGL. 
+Draw the stanford bunny using OpenGL. [![Run on Repl.it](https://repl.it/badge/github/vtta/bunny)](https://repl.it/github/vtta/bunny)
 
 ## Features 
 
